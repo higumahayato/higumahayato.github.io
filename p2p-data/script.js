@@ -16,7 +16,7 @@ const Peer = window.Peer;
     SDK: ${sdkSrc ? sdkSrc.src : 'unknown'}
   `.trim();
   
-  const peer = (window.peer = new Peer({
+  const peer = (window.Peer = new Peer({
     key: window.__SKYWAY_KEY__,
     debug: 3,
   }))
