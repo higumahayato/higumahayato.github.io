@@ -15,11 +15,11 @@ const Peer = window.Peer;
     UA: ${navigator.userAgent}
     SDK: ${sdkSrc ? sdkSrc.src : 'unknown'}
   `.trim();
-
+  
   const peer = (window.peer = new Peer({
     key: window.__SKYWAY_KEY__,
     debug: 3,
-  }));
+  }))
 
   // Register connecter handler
   connectTrigger.addEventListener('click', () => {
@@ -64,17 +64,17 @@ const Peer = window.Peer;
 
   // Register connected peer handler
   peer.on('connection', dataConnection => {
-    dataConnection.once('--??--', async () => {
+    dataConnection.once('open', async () => {
       messages.textContent += `=== DataConnection has been opened ===\n`;
 
       sendTrigger.addEventListener('click', onClickSend);
     });
 
-    dataConnection.on('--??--', data => {
+    dataConnection.on('data', data => {
       messages.textContent += `Remote: ${data}\n`;
     });
 
-    dataConnection.once('--??--', () => {
+    dataConnection.once('close', () => {
       messages.textContent += `=== DataConnection has been closed ===\n`;
       sendTrigger.removeEventListener('click', onClickSend);
     });
